@@ -1,0 +1,20 @@
+{% extends 'bookGallery/base.html' %}
+    {% block headcontent %}
+<title>{{title}}</title>
+    {%endblock %}
+{% block content %}
+<div class="py-5 bg-body-tertiary">
+    <div class="container">
+        <h1> {{ title }}</h1>
+        <div class="container">
+            <ul>
+                {% for publisher in publishers %}
+                <li>
+                    <div><a href="{{ publisher.get_absolute_url }}">{{publisher}}</a></div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

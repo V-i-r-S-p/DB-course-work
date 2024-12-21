@@ -1,0 +1,56 @@
+{% extends 'bookGallery/base.html' %}
+    {% block headcontent %}
+<title>{{title}}</title>
+    {%endblock %}
+
+
+{% block content %}
+
+<div class="py-5 bg-body-tertiary">
+    <div class="container">
+
+        {% for order in orders %}
+        {% if order.pk == busket_id %}
+        <div class="row">
+            <h1>Корзина</h1>
+            <div class="row py-1">
+                <p>Книги в корзине:</p>
+                <div class="container">
+                    <ul>
+                        {% for book in order.books.all %}
+                        <li><p>{{book.title}}</p></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <div class="row">
+            <h1> {{ title }}</h1>
+        </div>
+
+        <div>
+            {% for order in orders %}
+            {% if order.pk != busket_id %}
+            <p>Заказ: {{order.pk}}</p>
+            <p>Статус заказа: {{order.status}}</p>
+
+            <p>Заказ сформирован: {{order.date}}</p>
+            <div>
+                <p>Книги:</p>
+                <ul>
+                    {% for book in order.books.all %}
+                    <li><p>{{book.title}}</p></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

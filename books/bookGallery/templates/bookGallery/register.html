@@ -1,0 +1,40 @@
+{% extends 'bookGallery/base.html' %}
+
+    {% block headcontent %}
+<title>{{title}}</title>
+
+{% load static %}
+<link href="{% static 'bookGallery/css/signin.css' %}" rel="stylesheet"/>
+    {%endblock %}
+
+
+{% block content %}
+<body class="text-center">
+<div class="form-signin1">
+    <div class="form-signin2">
+        <main class="form-signin">
+            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+
+            <form method="post">
+                {% csrf_token %}
+                <label class="form-label" for="{{ form.username.id_for_label }}">{{form.username.label}}</label>
+                {{ form.username }}
+
+                <div class="form-error">{{ form.username.errors }}</div>
+                <label class="form-label" for="{{ form.password1.id_for_label }}">{{form.password1.label}}</label>
+                {{ form.password1 }}
+
+                <div class="form-error">{{ form.password1.errors }}</div>
+                <label class="form-label" for="{{ form.password2.id_for_label }}">{{form.password2.label}}</label>
+                {{ form.password2 }}
+
+                <div class="form-error">{{ form.password2.errors }}</div>
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Регистрация</button>
+            </form>
+        </main>
+    </div>
+</div>
+</body>
+{% endblock %}
+

@@ -1,0 +1,66 @@
+{% extends 'bookGallery/base.html' %}
+    {% block headcontent %}
+<title>{{title}}</title>
+
+    {%endblock %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+        <a href="{%  url 'home' %}">Все книги</a>
+        {% for genre in genres %}
+        <a href="{{ genre.get_absolute_url }}">{{genre.name}}</a>
+        {% endfor %}
+
+
+        <h1> {{ title }}</h1>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for book in books %}
+
+            <div class="col">
+                <div class="card shadow-sm h-100">
+                    <div class="flex-image-container">
+                        <img src="{{ book.cover.url }}" class="card-img-top book-cover" alt="Book Cover">
+                    </div>
+                    <div class="card-body">
+                        <a class="card-text" href="{% url 'bookView' slug=book.slug %}">{{ book.title }}</a>
+                        <p class="card-text">{{book.description|linebreaks|truncatewords:25}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <form method="post" action="{% url 'addOrder' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="book_id" value={{book.pk}}>
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="redirect" value="false">
+                                    <input type="hidden" name="next" value={{request.path}}>
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                            data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+                                            data-bs-content="Книга добавлена в корзину">Add to Cart
+                                    </button>
+
+                                </form>
+
+                                <!-- Вторая кнопка (redirect=True) -->
+                                <form method="post" action="{% url 'addOrder' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="book_id" value={{book.pk}}>
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="redirect" value="true">
+                                    <input type="hidden" name="next" value={{request.path}}>
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <p>{{ book.amount}} Осталось</p>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

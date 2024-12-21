@@ -1,0 +1,76 @@
+
+.book-cover {
+            width: 100%; /* Заполнение ширины карточки */
+            height: 200px; /* Фиксированная высота */
+            object-fit: cover; /* Центровка изображения внутри заданных размеров */
+        }
+
+.flex-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 125%; /* Высота 125% для соотношения 4:5 */
+    max-height: 500px; /* Ограничение по высоте (по желанию) */
+
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.flex-image-container .book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-input {
+    width: 300px;
+    font-size: 16px;
+}
+
+.form-label {
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+}
+
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
+}
+
+.form-button {
+    min-width: 200px;
+    font-size: 16px;
+}
+
+.form-signin1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-signin2{
+    display: flex;
+    justify-content: center;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+}
