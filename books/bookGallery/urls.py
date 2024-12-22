@@ -12,7 +12,6 @@ urlpatterns = [
     path('publishers/', publisherView, name="publishers"),
     path('publishers/<int:pub_id>/', publisherView, name="publishersView"),
     path('Genres/<int:genre_id>/', show_by_genre, name="genreView"),
-    path('profile/', profile, name="profile"),
     path('orders/', orders, name="orders"),
     path("addOrder/", addOrder, name="addOrder"),
 

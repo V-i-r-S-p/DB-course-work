@@ -66,7 +66,7 @@ def show_by_genre(request, genre_id):
     # page_number = request.GET.get('page')
     # page_obj = paginator.get_page(page_number)
     context = {
-        'title': f'Книги по жанру: {genres[genre_id - 1].name}',
+        'title': f'Книги по жанру: {Genre.objects.get(pk=genre_id).name}',
         'books': books,
         'genres': genres,
         'current_genre': genre_id
@@ -87,7 +87,7 @@ def authorView(request, author_id=0):
     # page_number = request.GET.get('page')
     # page_obj = paginator.get_page(page_number)
     BookContext = {
-        'title': f'Книги по Автору: {authors[author_id - 1].name}' if author_id >=1 else '',
+        'title': f'Книги по Автору: {Author.objects.get(pk=author_id).name}' if author_id >=1 else '',
         'books': books,
         'genres': genres,
         'current_genre': 0
@@ -112,7 +112,7 @@ def publisherView(request, pub_id=0):
     # page_number = request.GET.get('page')
     # page_obj = paginator.get_page(page_number)
     BookContext = {
-        'title': f'Книги по Издательству: {publishers[pub_id - 1].name}' if pub_id >= 1 else '',
+        'title': f'Книги по Издательству: {Publisher.objects.get(pk=pub_id).name}' if pub_id >= 1 else '',
         'books': books,
         'genres': genres,
         'current_genre': 0
